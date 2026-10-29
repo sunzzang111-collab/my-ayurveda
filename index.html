@@ -255,6 +255,8 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-si
 .mchips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.mchip{font-size:13px;font-weight:700;padding:4px 11px;border-radius:999px;background:var(--sand);color:#5b4a2a}
 .meal ul{margin:0;padding-left:18px}.meal li{font-size:13px;line-height:1.75;color:#4a4c47;margin-bottom:6px}.meal li b{color:var(--ink);margin-right:4px}
 .xsrc{font-size:12px!important;background:#eef0f8;border-radius:10px;padding:8px 12px;color:#3b4270}.xsrc b{color:#2f3770;margin-right:6px}
+.tsum{font-size:15px;line-height:1.8;padding:14px 0 10px;border-bottom:1px solid var(--line);color:#3d3f3a}.tsum b{font-size:16px}.tl-up{color:#2d6f5c}.tl-down{color:#9c4425}.tl-mid{color:#5d5a53}.tl-salt{color:#5d5a53}
+.refbox{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:16px 22px;margin:20px 0;border-top:0}.refbox summary{font-size:16px;color:var(--ink)}
 [hidden]{display:none!important}
 .fade{animation:fade .45s ease-out}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -352,8 +354,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-si
     <div id="compareBox" hidden><div class="rule"></div><h3>지난 검사와 비교 · 재검사 일치</h3><div id="compare"></div></div>
     <div class="rule"></div>
     <div class="cols">
-      <div><h3>이 결과가 나온 응답</h3><ul class="evidence" id="rEvidence"></ul></div>
-      <div><h3>응답 점검</h3><div id="rChecks"></div></div>
+      <ul id="rEvidence" hidden></ul><div><h3>응답 점검</h3><div id="rChecks"></div></div>
     </div>
   </section>
 
@@ -363,21 +364,15 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-si
     <div class="seg no-print" id="fBasis"><button data-b="auto">자동 (혼합)</button><button data-b="recent">최근 상태</button><button data-b="base">평소 체질</button></div>
     <p class="small" id="fBasisNote"></p>
     <p class="callout" id="fSeason"></p>
-    <h3 style="margin-top:28px">여섯 가지 맛(라사)의 비중</h3>
-    <p class="small">내 비중으로 각 맛이 도샤를 가라앉히는지(오른쪽), 북돋우는지(왼쪽)를 합산했습니다. 한 끼에 여섯 맛을 모두 담되, 어느 쪽에 무게를 둘지 참고하세요.</p>
+    <h3 style="margin-top:28px">나에게 맞는 맛 · 여섯 가지 맛(라사)</h3>
+    <p class="small">아유르베다는 한 끼에 여섯 맛을 모두 담되, 체질에 따라 비율을 달리하라고 봅니다. 초록 막대가 길수록 내 체질을 편안하게 하는 맛이니 <b>더 챙기고</b>, 주황 막대가 길수록 많이 먹으면 체질을 흔드는 맛이니 <b>줄여</b> 보세요.</p>
     <div class="tastes" id="fTastes"></div>
     <h3 style="margin-top:30px">이렇게 차려 보세요 · 하루 세 끼 예시</h3><div id="fMeals"></div>
-    <h3 style="margin-top:30px">먼저 들여볼 재료</h3><p class="small">분류별로 내 비중에서 특히 잘 맞는 재료입니다. 세 도샤 모두에 무난한 재료(당근·강황 등)는 아래 전체 목록에서 확인하세요.</p>
+    <h3 style="margin-top:30px">먼저 들여볼 재료</h3><p class="small">분류별로 내 비중에서 특히 잘 맞는 재료입니다. 세 도샤 모두에 무난한 재료(당근·강황 등)는 ‘근거와 계산’ 탭의 식재료 분류표에서 볼 수 있어요.</p>
     <div class="picks" id="fPicks"></div>
     <h3 style="margin-top:22px">양과 횟수를 줄여볼 재료</h3><p class="small">내 비중 때문에 특히 걸리는 재료입니다. 끊으라는 뜻이 아니라 양·횟수·조리법을 조절하라는 뜻입니다.</p>
     <div class="picks" id="fLimits"></div>
-    <div class="ornament">전체 식재료 75</div>
-    <div class="chips no-print" id="fTier"></div>
-    <input class="search no-print" id="fSearch" type="search" placeholder="재료 검색: 올리브유, 녹두, 백미" aria-label="식재료 검색">
-    <div class="chips no-print" id="fCats"></div>
-    <p class="small" id="fCount"></p>
-    <div class="foods" id="fList"></div>
-    <button class="btn no-print" id="fMore" hidden>더 보기</button>
+    
     <p class="callout">‘권장·적당량·제한’은 아유르베다 전통 안의 분류입니다. 예를 들어 카파에서 올리브유나 견과류를 제한하는 것은 영양학적으로 해롭다는 뜻이 아닙니다. 소금·설탕·포화지방을 늘리지 말고, 음식 종류를 지나치게 줄이지 않는 일반 원칙(WHO)을 함께 지켜 주세요.</p>
   </section>
 
@@ -392,6 +387,13 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-si
     <details open><summary>맛·계절·식재료 · 문헌과 규칙</summary><p>여섯 맛이 각 도샤에 미치는 방향(예: 단맛은 바타·피타를 가라앉히고 카파를 북돋움)과 계절별 도샤(가을·초겨울 바타, 여름 피타, 늦겨울·봄 카파)는 The Ayurvedic Institute 식사 안내[S1]를 따랐습니다. 비중을 곱해 더한 값은 이 앱의 규칙입니다.</p><p>식재료 분류는 식품 지침표[F1]의 Favor=권장, *=적당량, Avoid·**=제한을 옮겼고, 다른 기관의 자료[B1·J1]와 대조해 엇갈린 재료는 보수적으로 조정하고 ‘자료마다 다름’을 표시했습니다. 내 비중과 곱해 0~100의 연결값을 만들고, 80 이상이면서 제한 연결이 20% 미만이면 ‘먼저 들여볼 재료’, 50 미만이거나 제한 연결이 40% 이상이면 ‘줄여볼 재료’로 표시합니다. 이 계수와 구간은 이 앱의 규칙이며 건강 위험도나 섭취량이 아닙니다. 조리 방법은 표의 분류를 일상 조리에 옮긴 제안입니다.</p><p>최근 상태가 뚜렷하면 식사 기준을 최근 60 : 평소 40으로 섞습니다. ‘지금 겪는 상태에 맞춰 먹는다’는 식품 지침표의 사용법[F1]을 따르되, 최근 상태만 쓰면 평소 체질에서 제한되는 재료가 맨 위로 올라오는 문제가 있어 섞었습니다. 비율은 이 앱의 규칙이며, 화면에서 한쪽 기준만 따로 볼 수 있습니다.</p></details>
     <details open><summary>참고자료 표기</summary><p>식재료 분류는 The Ayurvedic Institute와 Usha &amp; Vasant Lad의 식품 지침표(Ayurvedic Cooking for Self Healing 발췌)를 참고했습니다. 원문 표를 옮긴 것이 아니라, 재료별 분류를 참고해 이 앱의 문장과 조리 제안으로 새로 정리했습니다. 이 앱은 해당 기관과 관련이 없습니다.</p></details>
     <details><summary>데이터와 개인정보</summary><p>응답은 서버로 전송되지 않습니다. 이어서 하기와 재검사 비교를 위해 이 기기의 브라우저 저장소에만 최근 5회까지 저장되며, ‘이 기기 기록 지우기’로 삭제할 수 있습니다. 공유 링크와 공유 이미지에는 세 도샤의 비중과 체질 유형만 담기고, 개별 문항의 응답은 담기지 않습니다. 연구용 내보내기 파일에는 이름 대신 참여자 코드만 넣으세요.</p></details>
+    <details class="refbox"><summary>참고 · 식재료 75가지 전체 분류표</summary><p class="small">내 결과가 아니라, 이 앱이 쓰는 75가지 재료 전체의 전통 분류(바타·피타·카파별 권장·적당량·제한)입니다. 내 비중에 맞춘 재료는 ‘맛과 식재료’ 탭에 있습니다.</p>
+    <div id="fTier" hidden></div>
+    <input class="search no-print" id="fSearch" type="search" placeholder="재료 검색: 올리브유, 녹두, 백미" aria-label="식재료 검색">
+    <div class="chips no-print" id="fCats"></div>
+    <p class="small" id="fCount"></p>
+    <div class="foods" id="fList"></div>
+    <button class="btn no-print" id="fMore" hidden>더 보기</button></details>
     <div id="mSources"></div>
   </section>
 
@@ -405,8 +407,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-si
   <p class="small" id="inAppTip" hidden>카카오톡·인스타그램 안의 브라우저에서는 공유 창이 열리지 않을 수 있어요. 오른쪽 위 메뉴에서 ‘다른 브라우저로 열기’를 누르거나, 이미지를 길게 눌러 저장하세요.</p>
   <div class="sharebtns">
     <button class="btn primary" id="shareMainBtn">공유하기<small>카카오톡 · 메시지 · 기타 앱</small></button>
-    <button class="btn ig" id="shareIgBtn">인스타그램<small>스토리 또는 게시물</small></button>
-    <div class="igpick" id="igPick" hidden><button class="btn" id="igStory">스토리<small>9:16 세로</small></button><button class="btn" id="igFeed">게시물<small>4:5 피드</small></button><p class="small">공유 창에서 Instagram을 고른 뒤 스토리 또는 피드를 선택하세요. 링크는 자동으로 복사돼 스토리의 링크 스티커에 붙여 넣을 수 있어요.</p></div>
+    <button class="btn ig" id="shareIgBtn">인스타그램<small>릴스 · 게시물 · 스토리 · 메시지</small></button>
     <button class="btn" id="saveImgBtn">이미지 저장</button>
     <button class="btn" id="copyLinkBtn">문구·링크 복사</button>
   </div>
@@ -545,19 +546,19 @@ document.querySelectorAll('#fBasis button').forEach(b=>{b.classList.toggle('on',
 const mode=!w?'none':S.basis==='base'||!r.rw?'base':S.basis==='recent'?'recent':'blend';$('fTitle').textContent=p?N.map((n,i)=>n+' '+p[i]).join(' · ')+({base:' (평소 체질)',recent:' (최근 상태)',blend:' (최근 60 + 평소 40)'}[mode]):'비중 미산출';
 $('fBasisNote').textContent={none:'비중이 계산되지 않아 식재료를 순위 없이 보여줍니다.',blend:'지금 겪는 상태에 맞춰 먹으라는 전통 지침에 따라 최근 상태를 우선하되, 평소 체질도 버리지 않도록 최근 60 : 평소 40으로 섞었습니다(이 비율은 앱의 규칙).',recent:'최근 늘어난 성질만으로 고른 결과입니다. 평소 체질에서 제한되는 재료가 위로 올라올 수 있습니다.',base:r.rw?'평소 체질만으로 고른 결과입니다.':'최근 변화가 뚜렷하지 않아 평소 체질 기준으로 보고 있습니다.'}[mode];
 const now=new Date(),[sd,sn,sdn]=seasonOf(now.getMonth()+1);$('fSeason').innerHTML='<b>지금은 '+sn+'</b> · 전통에서는 '+sn+'에 '+sdn+'가 쌓이기 쉬워, 체질과 관계없이 '+['따뜻하고 촉촉한 음식','시원하고 순한 음식','가볍고 따뜻한 음식'][sd]+'을 조금 더 챙기라고 권합니다'+(w&&w[sd]>=0.4?'. 내 비중에서도 '+sdn+'가 높은 편이라 이 계절에 특히 참고할 만합니다.':'.')+' <span class="small">(한국 달력 기준의 단순화)</span>';
-$('fTastes').innerHTML=w?TASTES.map(t=>{const v=w.reduce((s,x,i)=>s+x*t[1][i],0);const lab=t[0]==='짠맛'?'늘리지 않기':v>=0.3?'무게를 두기':v<=-0.3?'과하지 않게':'적당히';return '<div class="taste"><span>'+t[0]+'</span><div class="axis"><div class="'+(v>=0?'pos':'neg')+'" style="width:'+Math.abs(v)*50+'%"></div></div><span>'+lab+'<br><em>'+(t[3]||t[2])+'</em></span></div>'}).join(''):'<p class="small">비중이 계산되면 표시합니다.</p>';
+$('fTastes').innerHTML=(()=>{if(!w)return '<p class="small">비중이 계산되면 표시합니다.</p>';const ob=[...w].sort((a,b)=>b-a),triT=(ob[0]-ob[2])*100<CONFIG.triGap;const vals=TASTES.map(t=>triT?0:w.reduce((s,x,i)=>s+x*t[1][i],0));const mx=Math.max(.2,...vals.map(Math.abs));const up=[],down=[];const rows=TASTES.map((t,k)=>{const v=vals[k],salt=t[0]==='짠맛';const lab=salt?'늘리지 않기':v>=0.15?'더 챙기기':v<=-0.15?'줄이기':'보통';if(!salt&&v>=0.15)up.push(t[0]);if(!salt&&v<=-0.15)down.push(t[0]);const cls=salt?'tl-salt':v>=0.15?'tl-up':v<=-0.15?'tl-down':'tl-mid';return '<div class="taste"><span>'+t[0]+'</span><div class="axis"><div class="'+(v>=0?'pos':'neg')+'" style="width:'+(Math.abs(v)/mx*48)+'%"></div></div><span><b class="'+cls+'">'+lab+'</b><br><em>'+(salt?t[3]:'예: '+t[2])+'</em></span></div>'}).join('');const sum=up.length||down.length?'<p class="tsum">내 비중에서는 '+(up.length?'<b class="tl-up">'+up.join('·')+'</b>을 더 챙기고':'')+(up.length&&down.length?', ':'')+(down.length?'<b class="tl-down">'+down.join('·')+'</b>은 줄이는':'')+' 쪽이 맞아요. 짠맛은 체질과 관계없이 늘리지 않습니다.</p>':'<p class="tsum">세 도샤가 비슷해 특정 맛을 크게 늘리거나 줄일 필요는 없어요. 여섯 맛을 고르게 담으세요. 짠맛은 늘리지 않습니다.</p>';return sum+rows})();
 const groups=[['곡물',f=>f.c==='곡물'],['콩',f=>f.c==='콩'],['채소',f=>f.c==='채소'],['기름',f=>f.c==='기름'],['향신료',f=>f.c==='향신료'],['과일',f=>f.c==='과일']];
 const U=[1/3,1/3,1/3],spec=f=>match(f,w).score-match(f,U).score;$('fPicks').innerHTML=w?groups.map(([g,fn])=>{const f=DATA.foods.filter(fn).map(f=>({f,m:match(f,w),s:spec(f)})).filter(x=>x.m.tier==='support').sort((a,b)=>b.s-a.s||b.m.score-a.m.score)[0];return f?'<article><span class="tag support">'+g+'</span><h4>'+f.f.n+'</h4><p>'+f.f.cook+'</p></article>':''}).join(''):'';
 $('fLimits').innerHTML=w?DATA.foods.map(f=>({f,m:match(f,w),s:spec(f)})).filter(x=>x.m.tier==='limit').sort((a,b)=>a.s-b.s||b.m.conflict-a.m.conflict).slice(0,4).map(x=>'<article><span class="tag limit">'+x.f.c+'</span><h4>'+x.f.n+'</h4><p>'+x.f.why+'</p></article>').join(''):'';
 const tiers={support:'먼저 들여볼 재료',conditional:'양·조리 조건 확인',limit:'줄여볼 재료',all:'전체'};
 $('fTier').innerHTML=Object.entries(tiers).map(([k,v])=>'<button class="chip'+(S.tier===k?' on':'')+'" data-t="'+k+'">'+v+'</button>').join('');$('fTier').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.tier=b.dataset.t;S.limit=12;renderFood()});
 const cats=['전체',...new Set(DATA.foods.map(f=>f.c))];$('fCats').innerHTML=cats.map(c=>'<button class="chip'+(S.cat===c?' on':'')+'" data-c="'+c+'">'+c+'</button>').join('');$('fCats').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.cat=b.dataset.c;S.limit=12;renderFood()});
-const list=DATA.foods.map(f=>({f,m:match(f,w)})).filter(x=>(S.cat==='전체'||x.f.c===S.cat)&&(!S.q||(x.f.n+x.f.c).includes(S.q))&&(S.q||S.tier==='all'||!w||x.m.tier===S.tier)).sort((a,b)=>b.m.score-a.m.score);
-$('fCount').textContent=list.length+'개 · '+(S.q?'검색은 모든 분류에서 찾습니다 · ':'')+(w?'내 비중과 잘 맞는 순서':'분류 순서');const R=['제한','적당량','권장'];
-$('fList').innerHTML=list.slice(0,S.limit).map(({f,m})=>'<article class="food"><div class="row between"><span class="tag '+(m.tier==='support'?'support':m.tier==='limit'?'limit':'')+'">'+tiers[m.tier]+'</span><span class="meta">'+f.c+(w?' · 연결 '+Math.round(m.score):'')+'</span></div><h4>'+f.n+'</h4><div class="meta">'+N.map((n,i)=>n+' '+R[f.r[i]]).join(' · ')+'</div><p><b>어떻게 먹을까</b><br>'+f.cook+'</p><p class="why"><b>왜 이렇게 보나</b><br>'+f.why+'</p>'+(w&&m.conflict>=20&&m.tier!=='limit'?'<p class="conflict">내 비중의 '+Math.round(m.conflict)+'%가 이 재료를 제한하는 도샤에 걸려 있습니다. 양을 늘리지 말고 조리법을 지켜 주세요.</p>':'')+(f.note?'<p class="small">'+f.note+'</p>':'')+(f.x?'<p class="xsrc"><b>자료마다 다름</b> '+f.x+'</p>':'')+'</article>').join('')||'<p class="small">조건에 맞는 재료가 없습니다.</p>';
+const list=DATA.foods.map(f=>({f,m:match(f,w)})).filter(x=>(S.cat==='전체'||x.f.c===S.cat)&&(!S.q||(x.f.n+x.f.c).includes(S.q))&&true).sort((a,b)=>cats.indexOf(a.f.c)-cats.indexOf(b.f.c)||a.f.n.localeCompare(b.f.n,'ko'));
+$('fCount').textContent=list.length+'개 · 분류별 가나다순';const R=['제한','적당량','권장'];
+$('fList').innerHTML=list.slice(0,S.limit).map(({f,m})=>'<article class="food"><div class="row between"><span class="tag">'+f.c+'</span></div><h4>'+f.n+'</h4><div class="meta">'+N.map((n,i)=>n+' '+R[f.r[i]]).join(' · ')+'</div><p><b>어떻게 먹을까</b><br>'+f.cook+'</p><p class="why"><b>왜 이렇게 보나</b><br>'+f.why+'</p>'+(f.note?'<p class="small">'+f.note+'</p>':'')+(f.x?'<p class="xsrc"><b>자료마다 다름</b> '+f.x+'</p>':'')+'</article>').join('')||'<p class="small">조건에 맞는 재료가 없습니다.</p>';
 renderMeals();$('fMore').hidden=list.length<=S.limit;$('fMore').textContent='나머지 '+(list.length-S.limit)+'개 더 보기'}
 function setTab(t){S.tab=t;['analysis','food','guide','learn','method'].forEach(x=>{const b=$('t-'+x),p=$('p-'+x);p.hidden=x!==t;b.classList.toggle('on',x===t);b.setAttribute('role','tab');b.setAttribute('aria-selected',String(x===t));b.setAttribute('aria-controls','p-'+x);b.tabIndex=x===t?0:-1;p.setAttribute('role','tabpanel');p.setAttribute('aria-labelledby','t-'+x)})}
-document.querySelector('.tabs').addEventListener('keydown',e=>{const ids=['analysis','food','guide','learn','method'];const i=ids.indexOf(S.tab);if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=ids[(i+(e.key==='ArrowRight'?1:ids.length-1))%ids.length];setTab(n);$('t-'+n).focus()}});
+document.querySelector('.tabs').addEventListener('keydown',e=>{const ids=['analysis','food','guide','learn','method'];const i=ids.indexOf(S.tab);if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=ids[(i+(e.key==='ArrowRight'?1:ids.length-1))%ids.length];setTab(n);$('t-'+n).focus();scrollToPanel()}});
 
 /* ---------- demo ---------- */
 const PRESETS=[['바타 70 · 피타 20 · 카파 10',[70,20,10]],['바타 45 · 피타 45 · 카파 10',[45,45,10]],['피타 55 · 바타 35 · 카파 10',[35,55,10]],['카파 70 · 피타 20 · 바타 10',[10,20,70]],['바타 50 · 카파 40 · 피타 10',[50,10,40]],['피타 45 · 카파 45 · 바타 10',[10,45,45]],['바타 34 · 피타 33 · 카파 33',[34,33,33]]];
@@ -700,9 +701,9 @@ const toBlob=cv=>new Promise(res=>cv.toBlob(res,'image/jpeg',0.92));
 function isInApp(){return /KAKAOTALK|Instagram|FBAN|FBAV|Line\/|NAVER\(inapp|DaumApps/i.test(navigator.userAgent)}
 const isIOS=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 let CARD={};
-async function prepCards(){CARD={};for(const k of ['feed','story']){const cv=await makeCard(k);const blob=await toBlob(cv);CARD[k]={blob,file:new File([blob],'my-ayurveda-'+k+'.jpg',{type:'image/jpeg'}),url:URL.createObjectURL(blob)}}}
-function setShareBusy(b){['shareMainBtn','shareIgBtn','igStory','igFeed','saveImgBtn','copyLinkBtn'].forEach(id=>$(id).disabled=b)}
-let shareReturn=null;async function openShare(){shareReturn=document.activeElement;const m=$('shareModal');m.hidden=false;setTimeout(()=>$('shareClose').focus(),30);document.body.style.overflow='hidden';$('shareMsg').textContent='공유 이미지를 만드는 중…';$('igPick').hidden=true;$('inAppTip').hidden=!isInApp();$('shareTextPreview').textContent=shareText();setShareBusy(true);
+async function prepCards(){CARD={};for(const k of ['feed']){const cv=await makeCard(k);const blob=await toBlob(cv);CARD[k]={blob,file:new File([blob],'my-ayurveda-'+k+'.jpg',{type:'image/jpeg'}),url:URL.createObjectURL(blob)}}}
+function setShareBusy(b){['shareMainBtn','shareIgBtn','saveImgBtn','copyLinkBtn'].forEach(id=>$(id).disabled=b)}
+let shareReturn=null;async function openShare(){shareReturn=document.activeElement;const m=$('shareModal');m.hidden=false;setTimeout(()=>$('shareClose').focus(),30);document.body.style.overflow='hidden';$('shareMsg').textContent='공유 이미지를 만드는 중…';$('inAppTip').hidden=!isInApp();$('shareTextPreview').textContent=shareText();setShareBusy(true);
   await prepCards();$('sharePreview').src=CARD.feed.url;setShareBusy(false);$('shareMsg').textContent=''}
 function closeShare(){$('shareModal').hidden=true;document.body.style.overflow='';if(shareReturn&&shareReturn.focus)shareReturn.focus()}
 document.addEventListener('keydown',e=>{const m=$('shareModal');if(m.hidden||e.key!=='Tab')return;const f=[...m.querySelectorAll('button:not([disabled]):not([hidden]),summary,a[href]')].filter(x=>x.offsetParent!==null);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
@@ -718,7 +719,7 @@ function shareMain(){const text=shareText(),d={title:'나의 아유르베다',te
   if(navigator.share){runShare({title:'나의 아유르베다',text}).then(r=>{$('shareMsg').textContent=r==='shared'?'문구와 링크를 공유했어요. 이미지는 길게 눌러 저장한 뒤 함께 보내 주세요.':r==='cancel'?'':'공유하지 못했어요.'});return}
   copyText(text).then(()=>{$('shareMsg').textContent='이 브라우저는 공유 창을 지원하지 않아 문구와 링크를 복사했어요. ‘이미지 저장’ 후 카카오톡 등에 함께 붙여 넣어 주세요.'})}
 function shareInsta(kind){const c=CARD[kind],d={files:[c.file]};copyText(shareUrl()||shareText());
-  if(canShareData(d)){runShare(d).then(r=>{$('shareMsg').textContent=r==='shared'?'인스타그램에서 '+(kind==='story'?'스토리':'피드')+'를 고르면 돼요. 링크는 복사해 두었으니 스토리의 링크 스티커에 붙여 넣으세요.':r==='cancel'?'':'공유하지 못했어요. 이미지를 저장해 직접 올려 주세요.'});return}
+  if(canShareData(d)){runShare(d).then(r=>{$('shareMsg').textContent=r==='shared'?'인스타그램에서 릴스·게시물·스토리·메시지 중 원하는 곳을 고르면 돼요. 링크는 복사해 두었으니 스토리라면 링크 스티커에 붙여 넣으세요.':r==='cancel'?'':'공유하지 못했어요. 이미지를 저장해 직접 올려 주세요.'});return}
   if(isIOS()||isInApp()){showSaveHint(kind);$('shareMsg').textContent+=' 저장한 뒤 인스타그램 '+(kind==='story'?'스토리':'새 게시물')+'에서 올려 주세요. 링크는 복사해 두었어요.';return}
   downloadBlob(c.blob,'my-ayurveda-'+kind+'.jpg');$('sharePreview').src=c.url;$('shareMsg').textContent=(kind==='story'?'스토리용':'게시물용')+' 이미지를 저장했어요. 휴대폰으로 옮겨 인스타그램에 올려 주세요. 링크는 복사해 두었어요.'}
 function saveImage(){const c=CARD.feed;
@@ -727,13 +728,14 @@ function saveImage(){const c=CARD.feed;
   downloadBlob(c.blob,'my-ayurveda-result.jpg');$('shareMsg').textContent='이미지를 저장했어요.'}
 function copyLink(){const u=shareUrl();if(!u){$('shareMsg').textContent='지금은 내 컴퓨터의 파일로 열려 있어 공유 링크가 없어요. 웹에 배포하면 링크가 생깁니다.';return}copyText(shareText()).then(ok=>{$('shareMsg').textContent=ok?'공유 문구와 링크를 복사했어요. 원하는 곳에 붙여 넣으세요. 링크에는 비중만 담기고 개별 응답은 담기지 않아요.':'복사하지 못했어요. 아래 ‘함께 보내지는 문구’를 길게 눌러 복사하세요.'})}
 /* ---------- wiring ---------- */
-$('start').onclick=()=>{const st=store.get();if(st.progress&&!confirm('저장된 진행 상황을 지우고 처음부터 시작할까요?'))return;if(st.progress){delete st.progress;store.set(st)}S.ans.fill(null);S.at=0;S.demo=false;S.shared=false;S.r=null;S.breakSeen={};S.times=[];hideBreak();show('quiz');renderQ()};$('resume').onclick=()=>{const p=store.get().progress;if(!p)return;S.ans=p.ans.slice();S.at=Math.min(p.at,Q.length-1);S.demo=false;S.shared=false;S.r=null;show('quiz');renderQ()};$('lastResult').onclick=()=>{const h=store.get().history||[];if(!h.length)return;S.ans=h[h.length-1].ans.slice();S.shared=false;S.r=makeReport(S.ans);S.demo=false;S.basis='auto';openResult()};$('share').onclick=openShare;$('shareOpen').onclick=openShare;$('shareClose').onclick=closeShare;$('shareModal').onclick=e=>{if(e.target.id==='shareModal')closeShare()};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('shareModal').hidden)closeShare()});$('shareMainBtn').onclick=shareMain;$('shareIgBtn').onclick=()=>{$('igPick').hidden=!$('igPick').hidden};$('igStory').onclick=()=>shareInsta('story');$('igFeed').onclick=()=>shareInsta('feed');$('saveImgBtn').onclick=saveImage;$('copyLinkBtn').onclick=copyLink;$('export').onclick=exportJSON;$('wipe').onclick=()=>{if(!confirm('이 기기에 저장된 진행 상황과 지난 결과를 모두 지울까요?'))return;store.clear();$('actionNote').textContent='이 기기의 기록을 지웠습니다.';$('compareBox').hidden=true};$('takeOwn').onclick=()=>{location.hash='';S.shared=false;S.ans.fill(null);S.at=0;S.r=null;homeState();show('home')};$('sample').onclick=()=>demo(0);$('back').onclick=back;$('next').onclick=next;
-['analysis','food','guide','learn','method'].forEach(t=>$('t-'+t).onclick=()=>setTab(t));
+$('start').onclick=()=>{const st=store.get();if(st.progress&&!confirm('저장된 진행 상황을 지우고 처음부터 시작할까요?'))return;if(st.progress){delete st.progress;store.set(st)}S.ans.fill(null);S.at=0;S.demo=false;S.shared=false;S.r=null;S.breakSeen={};S.times=[];hideBreak();show('quiz');renderQ()};$('resume').onclick=()=>{const p=store.get().progress;if(!p)return;S.ans=p.ans.slice();S.at=Math.min(p.at,Q.length-1);S.demo=false;S.shared=false;S.r=null;show('quiz');renderQ()};$('lastResult').onclick=()=>{const h=store.get().history||[];if(!h.length)return;S.ans=h[h.length-1].ans.slice();S.shared=false;S.r=makeReport(S.ans);S.demo=false;S.basis='auto';openResult()};$('share').onclick=openShare;$('shareOpen').onclick=openShare;$('shareClose').onclick=closeShare;$('shareModal').onclick=e=>{if(e.target.id==='shareModal')closeShare()};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('shareModal').hidden)closeShare()});$('shareMainBtn').onclick=shareMain;$('shareIgBtn').onclick=()=>shareInsta('feed');$('saveImgBtn').onclick=saveImage;$('copyLinkBtn').onclick=copyLink;$('export').onclick=exportJSON;$('wipe').onclick=()=>{if(!confirm('이 기기에 저장된 진행 상황과 지난 결과를 모두 지울까요?'))return;store.clear();$('actionNote').textContent='이 기기의 기록을 지웠습니다.';$('compareBox').hidden=true};$('takeOwn').onclick=()=>{location.hash='';S.shared=false;S.ans.fill(null);S.at=0;S.r=null;homeState();show('home')};$('sample').onclick=()=>demo(0);$('back').onclick=back;$('next').onclick=next;
+function scrollToPanel(){const tabs=document.querySelector('.tabs');const p=$('p-'+S.tab);const y=p.getBoundingClientRect().top+scrollY-tabs.offsetHeight-12;scrollTo({top:Math.max(0,y),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+['analysis','food','guide','learn','method'].forEach(t=>$('t-'+t).onclick=()=>{setTab(t);scrollToPanel()});
 document.querySelectorAll('#fBasis button').forEach(b=>b.onclick=()=>{S.basis=b.dataset.b;renderFood()});
 $('fSearch').oninput=e=>{S.q=e.target.value.trim();S.limit=12;renderFood()};$('fMore').onclick=()=>{S.limit=999;renderFood()};
 $('toQuiz').onclick=()=>{S.r=null;S.at=0;show('quiz');renderQ()};
 $('reset').onclick=()=>{S.r=null;S.demo=false;S.shared=false;homeState();show('home')};
-$('print').onclick=()=>print();$('toLearn').onclick=e=>{e.preventDefault();setTab('learn')};
+$('print').onclick=()=>print();$('toLearn').onclick=e=>{e.preventDefault();setTab('learn');scrollToPanel()};
 ['learnHome','learnResult'].forEach(id=>$(id).appendChild($('learnTpl').content.cloneNode(true)));
 $('mSources').innerHTML=DATA.sources.map(s=>'<div class="source"><b>'+s[0]+' · '+s[1]+'</b><p>'+s[2]+'</p><a href="'+s[3]+'" target="_blank" rel="noopener noreferrer">원문 보기</a></div>').join('');
 homeState();(function(){const s=location.hash.match(/^#r=(\d{1,3})-(\d{1,3})-(\d{1,3})$/);if(s){const v=[+s[1],+s[2],+s[3]];const t=v.reduce((a,b)=>a+b,0);if(t>=95&&t<=105){const w=v.map(x=>x/t);S.r={ans:null,base:w.map((x,d)=>({d,score:x*100,n:16,total:16})),recent:[],bw:w,rw:null,cls:classify(w),q:null};S.shared=true;S.demo=false;openResult();return}}const m=location.hash.match(/^#v4=([0-5x]+)$/);const a=m&&dec(m[1]);if(a){S.ans=a;S.shared=true;S.demo=false;S.r=makeReport(a);openResult()}})();

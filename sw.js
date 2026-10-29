@@ -1,4 +1,4 @@
-const CACHE='my-ayurveda-v10-mvt2znij';
+const CACHE='my-ayurveda-v11-mvt67n2m';
 const ASSETS=['./','index.html','hero.jpg','vata.jpg','pitta.jpg','kapha.jpg','noto-sans-kr.woff2','gowun-batang-400.woff2','gowun-batang-700.woff2','cormorant-500.woff2','cormorant-500i.woff2','favicon.png','icon-192.png','icon-512.png','apple-touch-icon.png','manifest.webmanifest'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
