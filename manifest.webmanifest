@@ -1,0 +1,29 @@
+{
+  "name": "나의 아유르베다",
+  "short_name": "아유르베다",
+  "description": "바타·피타·카파 비중과 맞춤 식재료·생활 가이드",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#13203b",
+  "theme_color": "#13203b",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
